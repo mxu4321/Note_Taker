@@ -27,6 +27,17 @@ router.post("/notes", (req, res) => {
 });
 
 // DELETE /api/notes/:id should receive a query parameter containing the id of a note to delete. 
-router.delete ()
+router.delete("/notes/:id", (req, res) => {
+    fs.readFile(path.join(__dirname, "../db/db.json"), (err, data) => {
+        if (err) throw err;
+        const notes = JSON.parse(data);
+        const noteId = req.params.id;
+        const newNotes = notes.filter(note => note.id !== noteId);
+        fs.writeFile(path.join(__dirname, "../db/db.json"), JSON.stringify(newNotes), (err) => {
+            if (err) throw err;
+            res.json(newNotes);
+        });
+    });
+}); // ⚠️ not working yet
 
 module.exports = router;
