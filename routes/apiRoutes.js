@@ -4,9 +4,6 @@ const path = require("path");
 const fs = require("fs");
 // creates a unique id for each note
 const { v4: uuidv4 } = require('uuid');
-// const newNote = req.body;
-// newNote.id = uuidv4();
-// notes.push(newNote);
 
 
 // GET /api/notes should read the db.json file and return all saved notes as JSON.
